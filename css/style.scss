@@ -229,3 +229,25 @@ input #SearchFruta{
 .filtro{
     display: none;
 }
+// .cart{
+//     position: absolute;
+//     right: 128px;
+//     top: 25px;
+//     text-decoration: none;
+// }
+
+// .cartIcon{
+//     width: 30px;
+// }
+#cartCounter{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: white;
+    background: red;
+    border-radius: 100%;
+    border: 1px rgb(255, 255, 255) solid;
+    font-size: 10px;
+    text-align: center;
+    line-height: 19px;
+}

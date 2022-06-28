@@ -264,4 +264,17 @@ input #SearchFruta {
 .filtro {
   display: none;
 }
+
+#cartCounter {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: white;
+  background: red;
+  border-radius: 100%;
+  border: 1px white solid;
+  font-size: 10px;
+  text-align: center;
+  line-height: 19px;
+}
 /*# sourceMappingURL=style.css.map */
