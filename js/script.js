@@ -1,3 +1,4 @@
+
 // DOM
 // SALUDO A MI USUARIO
 
@@ -50,7 +51,12 @@ function mostrarProductos() {
 
     buyButton.addEventListener("click", function () {
       cart.push(product);
-      alert("Agregaste " + product.name + " al carrito")
+      Swal.fire(
+        'Agregaste un item al carrito!',
+        product.name,
+        'success'
+      )
+      // alert("Agregaste " + product.name + " al carrito")
       div.innerHTML = ``;
       showCart();
     });
