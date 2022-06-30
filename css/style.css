@@ -156,7 +156,7 @@ SHOW DE LOS MEDIAS QUERIES
           flex-direction: row;
 }
 
-.div {
+.detalleCarritoDiv {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -167,7 +167,7 @@ SHOW DE LOS MEDIAS QUERIES
   gap: 1em;
 }
 
-.div li {
+.detalleCarritoDiv li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -181,44 +181,13 @@ SHOW DE LOS MEDIAS QUERIES
   gap: 2em;
 }
 
-.div h4 {
+.detalleCarritoDiv h4 {
   text-align: right;
   font-size: 20px;
 }
 
 .alerta {
   color: red;
-}
-
-#form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#form form {
-  gap: 2em;
-  width: 100%;
-}
-
-#form form input {
-  width: 100%;
-  margin-top: 1em;
-  text-align: center;
-  padding: 0.5em;
-}
-
-#form form button {
-  text-align: center;
-  margin-top: 2em;
-  margin-left: 45%;
 }
 
 li.miCarrito {

@@ -4,7 +4,7 @@ const products =[
     category: "Fruta",
     description: "Lorem ipsum dolor. ",
     name: "Manzana roja",
-    price: " 150",
+    price: " 15000",
     img: "https://t1.ev.ltmcdn.com/es/posts/7/0/2/germinar_semillas_de_manzana_como_hacerlo_y_cuidados_2207_orig.jpg",
   },
   {
@@ -12,7 +12,7 @@ const products =[
     category: "Fruta",
     description: "Lorem ipsum dolor. ",
     name: "Banana",
-    price: " 200",
+    price: " 2000",
     img: "https://img.freepik.com/vector-gratis/racimo-platano-amarillo-maduro-vector-aislado-sobre-fondo-blanco_1284-45456.jpg",
   },
   {

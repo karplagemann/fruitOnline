@@ -142,19 +142,19 @@ SHOW DE LOS MEDIAS QUERIES
     flex-direction: row;
 
 }
-.div{
+.detalleCarritoDiv{
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
-.div li{
+.detalleCarritoDiv li{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 2em;
 }
 
-.div h4{
+.detalleCarritoDiv h4{
 	text-align: right;
     font-size: 20px;
 }
@@ -163,30 +163,6 @@ SHOW DE LOS MEDIAS QUERIES
     color: red;
 }
 
-#form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-#form form {
-    gap: 2em;
-    width: 100%;
-}
-
-#form form input {
-    width: 100%;
-    margin-top: 1em;
-    text-align: center;
-    padding: 0.5em;
-}
-
-#form form button {
-    text-align: center;
-    margin-top: 2em;
-    margin-left: 45%;
-}
 
 li.miCarrito {
 	border-bottom: 2px solid #44484a;

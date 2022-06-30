@@ -1,21 +1,12 @@
-
-// DOM
-// SALUDO A MI USUARIO
-
-// let nombre = prompt("cual es tu nombre?");
-// while (nombre == "") {
-//     nombre = prompt("cual es tu nombre, no dejes vacio!?");
-// }
-// const saludar = (nombre) => {
-//   alert(`Hola ${nombre}! Como estas?`);
-// };
-// saludar(nombre);
-
 let misProductosOferta = document.getElementById("misProductosOferta");
-const div = document.querySelector(".div");
+const div = document.querySelector(".detalleCarritoDiv");
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 const mainCont = document.querySelector(".rowContainer");
+let btnSearch = document.getElementById("search-button");
+let inputSearch = document.getElementById("inputSearch");
+
 
 // MOSTRAR PRODUCTOS //
 function mostrarProductos() {
@@ -36,7 +27,7 @@ function mostrarProductos() {
 
     let price = document.createElement("div");
     price.className = "text-primary";
-    price.innerHTML = `<span class="fw-bold mb-2 ">$ ${product.price} </span>x Kg`;
+    price.innerHTML = `<span class="fw-bold mb-2 ">$ ${product.price.toLocaleString()} </span>x Kg`;
   
 
     let descriptionProduct = document.createElement("p");
@@ -50,7 +41,16 @@ function mostrarProductos() {
     card.append(img, name, price, descriptionProduct, buyButton);
 
     buyButton.addEventListener("click", function () {
-      cart.push(product);
+      // cart.push(product);
+      // Acá HAY QUE CREAR un objeto Detail
+      // Para evitar que se agrege un objeto nuevo, hay que preguntar si el carrito ya tiene un
+      // detalle para ese producto, si ya hay un detalle, no se crea el detalle nuevo.
+      const cartDetail = {
+        quantity: 1,
+        product: product,
+      } 
+      cart.push(cartDetail);
+      localStorage.setItem("cart", JSON.stringify(cart));
       Swal.fire(
         'Agregaste un item al carrito!',
         product.name,
@@ -84,34 +84,49 @@ function showCart() {
   alertCart.remove();
 
 
-  cart.forEach((element) => {
+  cart.forEach((cartDetail) => {
     const divCart = document.createElement("li");
     divCart.className = "miCarrito";
+    // ES BUENO PONERLE UN ID A TODO LO QUE QUIERAS RECUPERAR DESPUES
+    // LOS IDs DEBEN SER ESPECIFICOS PARA CADA PRODUCTO.
     divCart.innerHTML += `
-        <img src="${element.img}">
-        <button class="eliminar btn btn-danger" data-id=${element.id}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+        <img src="${cartDetail.product.img}">
+        <button id="btn_del_${cartDetail.product.id}" class="eliminar btn btn-danger" data-id=${cartDetail.product.id}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
         </svg></button>
-        <h5 class="col">${element.name}</h5>
+        <h5 class="col">${cartDetail.product.name}</h5>
         <form id="formulario">
-                <input id="cantidadInput" class="inputDeCarga" type="number" placeholder="Cuantos kg?" />
+                <input id="input_quant_${cartDetail.product.id}" class="inputDeCarga" type="number" placeholder="Cuantos kg?" value=${cartDetail.quantity} />
         </form>
-        <h5 class="fw-bold mb-2 text-primary">$${element.price}</h5>
+        <h5 id="text_price_${cartDetail.product.id}"class="fw-bold mb-2 text-primary">$${cartDetail.product.price * cartDetail.quantity}</h5>
         `;
     div.appendChild(divCart);
+
+    let eliminarItem = document.getElementById('btn_del_' + cartDetail.product.id);
+    eliminarItem.onclick = (e) => {
+      const productId = e.target.getAttribute(`data-id`);
+      cart = cart.filter((element) => element.product.id !== productId);
+      divCart.remove();
+      div.innerHTML = ``;
+      showCart();
+    };
+
+    let inputCantidad = document.getElementById('input_quant_' + cartDetail.product.id);
+    inputCantidad.onchange = (e) => {
+      const textPrice = document.getElementById('text_price_' + cartDetail.product.id);
+      console.log()
+      const thisDetail = cart.find((element) => element.product.id === cartDetail.product.id);
+      console.log(cart)
+      thisDetail.quantity = parseInt(e.target.value);
+      textPrice.innerHTML = `$${thisDetail.product.price * thisDetail.quantity}`;
+    };
   });
 
-  let eliminarItem = document.querySelector(".eliminar");
-  eliminarItem.onclick = (e) => {
-    const productId = e.target.getAttribute(`data-id`);
-    cart = cart.filter((producto) => producto.id !== productId);
-    div.innerHTML = ``;
-    showCart()
-  };
+
 
   //PRECIO TOTAL CARRITO//
   const total = cart
-    .map((item) => parseInt(item.price))
+    .map((cartDetail) => parseInt(cartDetail.product.price * cartDetail.quantity))
     .reduce(
       (cartTotalPrice, currentItemPrice) => cartTotalPrice + currentItemPrice,
       0
@@ -132,6 +147,8 @@ function showCart() {
 
   deleteCart.onclick = () => {
     cart = [];
+     //vaciar localstorage
+     localStorage.setItem("cart", JSON.stringify(cart));
     div.innerHTML = ``;
   };
 }
@@ -142,42 +159,38 @@ buttonCart.onclick = () => {
 };
 
 
-//BUSCADOR DE FRUTAS 
-// document.addEventListener("keyup", e=>{
-
-//   if (e.target.matches("#SearchFruta")){
-
-//       // if (e.key ==="Escape")e.target.value = ""
-
-//       // document.querySelectorAll(".articuloFruta").forEach(fruta =>{
-
-//       //     fruta.textContent.toLowerCase().includes(e.target.value.toLowerCase())
-//       //       ?fruta.classList.remove("filtro")
-//       //       :fruta.classList.add("filtro")
-//       // })
-
-//       alert("es el buscador")
-
-//   }
-
-
-// })
-
-// const inputKeyUp = (ID) => {
-//     let input = document.getElementById(ID);
-//     input.onkeyup = (e) => { console.log(e.target.value + '  inputKeyUp') }
-// }
-
-// inputKeyUp ('SearchFruta')
-
-// CARRITO CONTADOR
 
 
 
-let alertCart1 = document.createElement("p");
-alertCart1.setAttribute("class", "alerta");
 
-if (!cart.lenght) {
-  alertCart1.innerText = `0 items`;
-  cartCounter.append(alertCart1);
+//FUNCION QUE BUSCAR PRODUCTO SEGUN SU NOMBRE
+const buscarNombreProducto = (name) => {
+  const nombreBuscado = products.find(
+    (nombreBuscado) => nombreBuscado.name.toLowerCase() === name
+  );
+  if (nombreBuscado) {
+    console.log(nombreBuscado);
+    limpiarMisProductosOferta();
+    mostrarProductos([nombreBuscado]);
+    return (resultadoBusqueda = nombreBuscado);
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops... ' ,
+      text: 'no lo tenemos :('
+    })
+    limpiarMisProductosOferta();
+    mostrarProductos(products);
+  }
+};
+
+//FUNCION PARA VACIAR EL CONTENIDO DE LA SECCION MIS PRODUCTOS
+function limpiarMisProductosOferta() {
+  misProductosOferta.innerHTML = "";
 }
+
+btnSearch.addEventListener("click", (e) => {
+  e.preventDefault();
+  let resultadoBusqueda = buscarNombreProducto(inputSearch.value);
+  console.log(resultadoBusqueda);
+});

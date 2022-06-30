@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
     <!-- CSS BOOTSTRAP 5-->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- CSS PERSONALIZADOS -->
@@ -51,13 +50,17 @@
     <!-- BUSCADOR -->
     <div class="bg-secondary p-3 shadow">
         <div class="input-group container">
-            <input type="text" name="SearchFruta" id="SearchFruta" placeholder="Buscar..." class="form-control">
+            <input type="text" id="inputSearch" class="form-control" placeholder="busca tu fruta favorita"
+                aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <!-- <button type="button" class="btn btn-primary ms-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                <button type="button" id="search-button" class="btn btn-primary ms-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                        </path>
                     </svg>
-                    Buscar -->
+                    Buscar
                 </button>
             </div>
         </div>
@@ -83,7 +86,7 @@
             <div class="row showCart">
                 <div id="cartList">
                     <p>Detalle:</p>
-                    <div class="div">
+                    <div class="detalleCarritoDiv">
                     </div>
                 </div>
             </div>
