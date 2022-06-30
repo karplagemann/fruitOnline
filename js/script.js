@@ -26,7 +26,7 @@ function mostrarProductos() {
 
     let price = document.createElement("div");
     price.className = "text-primary";
-    price.innerHTML = `<span class="fw-bold mb-2 ">$ ${product.price.toLocaleString()} </span>x Kg`;
+    price.innerHTML = `<span class="fw-bold mb-2 ">$ ${parseFloat(product.price).toFixed(2)} </span>x Kg`;
 
     let descriptionProduct = document.createElement("p");
     descriptionProduct.innerText = product.description;
@@ -62,7 +62,7 @@ mostrarProductos();
 // MOSTRAR CARRITO //
 let cartView = document.getElementById("showProductsCart");
 let goToCart = document.getElementById("goToCart");
-let carrito = document.getElementById("cartList");
+let carritox = document.getElementById("cartList");
 const buttonCart = document.getElementById("mostrarCarrito");
 
 let alertCart = document.createElement("p");
@@ -101,7 +101,7 @@ function showCart() {
         <h5 id="text_price_${
           cartDetail.product.id
         }"class="fw-bold mb-2 text-primary">$${
-      cartDetail.product.price * cartDetail.quantity
+       parseFloat(cartDetail.product.price * cartDetail.quantity).toFixed(2)
     }</h5>
         `;
     div.appendChild(divCart);
@@ -129,9 +129,10 @@ function showCart() {
         (element) => element.product.id === cartDetail.product.id
       );
       console.log(cart);
+      let totalCantidad = thisDetail.product.price * thisDetail.quantity
       thisDetail.quantity = parseInt(e.target.value);
-      textPrice.innerHTML = `$${
-        thisDetail.product.price * thisDetail.quantity
+      textPrice.innerHTML = `$${parseFloat(totalCantidad).toFixed(2)
+        
       }`;
     };
   });
@@ -148,7 +149,7 @@ function showCart() {
   console.log(total);
 
   let totalCompra = document.createElement("h4");
-  totalCompra.innerHTML = `Total del carrito <span class="text-primary">$ ${total}</span>`;
+  totalCompra.innerHTML = `Total del carrito <span class="text-primary">$ ${parseFloat(total).toFixed(2).toLocaleString()}</span>`;
   div.append(totalCompra);
 
   //VACIAR CARRITO //
@@ -171,10 +172,10 @@ function showCart() {
   confirmarCompra.innerHTML = `Confirmar compra`;
   div.append(confirmarCompra);
   confirmarCompra.onclick = () => {
-    cart = [];
-    //vaciar localstorage
     localStorage.setItem("cart", JSON.stringify(cart));
+    cart = [];
     Swal.fire("Confirmaste tu compra", "Gracias por confiar en nosotros!","success");
+    div.innerHTML = ``;
   };
 }
 
@@ -182,6 +183,7 @@ buttonCart.onclick = () => {
   div.innerHTML = ``;
   showCart();
 };
+
 
 //FUNCION QUE BUSCAR PRODUCTO SEGUN SU NOMBRE
 const buscarNombreProducto = (name) => {
@@ -214,3 +216,14 @@ btnSearch.addEventListener("click", (e) => {
   let resultadoBusqueda = buscarNombreProducto(inputSearch.value);
   console.log(resultadoBusqueda);
 });
+
+let carrito
+
+// funcion para notificacion de carrito  ARRIBA
+const contador = document.getElementById('cartCounter')
+contador.innerHTML = cart.length
+
+
+
+
+
