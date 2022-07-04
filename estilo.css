@@ -1,0 +1,184 @@
+#container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.imgProducto {
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+p {
+  color: #e9eef2;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-family: Lato-Black;
+  padding: 10px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.cart {
+  position: absolute;
+  right: 35px;
+  top: 25px;
+  text-decoration: none;
+}
+
+.cartIcon {
+  width: 30px;
+}
+
+.cartContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.txtCarrito {
+  text-align: center;
+  color: black;
+  margin: 30px;
+}
+.btnVolver {
+  text-decoration: none;
+  width: fit-content;
+}
+.btnVolver button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #dd2313;
+  font-family: Lato-Black;
+  transition: 0.5s ease;
+  border: none;
+}
+
+.btnVolver button:hover {
+  color: #e9eef2;
+  background: #dd2313;
+}
+
+#cartCounter {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  color: white;
+  background: black;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+.tableContainer {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-radius: 5px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+table tr th:first-child {
+  width: 80px;
+}
+
+table tr th:nth-child(2) {
+  width: 300px;
+}
+
+thead tr th {
+  background: #326789;
+  color: #e9eef2;
+}
+
+thead tr th:first-child {
+  border-radius: 10px 0px 0px 0px;
+}
+
+thead tr th:last-child {
+  border-radius: 0px 10px 0px 0px;
+}
+
+tbody tr:nth-child(even) {
+  background: #326789;
+}
+
+tbody tr:nth-child(odd) {
+  background: #78a6c8;
+}
+
+tfoot tr th {
+  background: #326789;
+  color: #e9eef2;
+}
+
+tfoot tr th:first-child {
+  border-radius: 0px 0px 0px 10px;
+}
+
+tfoot tr th:last-child {
+  border-radius: 0px 0px 10px 0px;
+}
+
+th {
+  background: transparent;
+}
+
+.imgProdCart {
+  width: 80px;
+  margin: 3px;
+  border-radius: 5px;
+}
+
+.detallesTabla {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.trash {
+  width: 30px;
+}
+
+.nombreProd {
+  padding-left: 10px;
+}
+
+.txtTotal {
+  text-align: right;
+  padding: 10px;
+}
+
+.txtTabla {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.btnTerminar {
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #dd2313;
+  font-family: Lato-Black;
+  transition: 0.5s ease;
+  border: none;
+}
+
+.btnTerminar:hover {
+  color: #e9eef2;
+  background: #dd2313;
+}
