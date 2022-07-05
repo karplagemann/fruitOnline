@@ -152,6 +152,16 @@ function agregarAlCarrito(e) {
       { ...enCarrito, cantidad: enCarrito.cantidad + 1 },
     ];
   }
+
+  //OPERADOR TERNARIO
+// let carritoFiltrado;
+// !enCarrito  ? carrito.push({ ...prodEncontrado, cantidad: 1 }) :
+//   carritoFiltrado = carrito.filter((prod) => prod.id != enCarrito.id);
+//     carrito = [
+//       ...carritoFiltrado,
+//       { ...enCarrito, cantidad: enCarrito.cantidad + 1 }
+//     ];
+
   Swal.fire({
     icon: "success",
     title: "Agregaste un item al carrito!",

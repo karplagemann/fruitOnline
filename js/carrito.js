@@ -12,7 +12,7 @@ const totalCarrito = () => {
 
 //FUNCION QUE BUSCA POR ID
 const buscarIdProducto = (id) => {
-  const idBuscado = carrito.find((idBuscado) => idBuscado.id === id);
+  const idBuscado = carrito.find((idBuscado) => Number(idBuscado.id) === id);
 
   return (resultadoBusqueda = idBuscado);
 };
