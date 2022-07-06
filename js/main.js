@@ -8,44 +8,51 @@
 // peticion()
 // let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-let productos = [
-  {
-    id: "1",
-    nombre: "Manzana roja",
-    precio: 15000,
-    img: "https://t1.ev.ltmcdn.com/es/posts/7/0/2/germinar_semillas_de_manzana_como_hacerlo_y_cuidados_2207_orig.jpg",
-    description: "Lorem ipsum dolor. ",
-    category: "Fruta",
-    cantidad:0,
-  },
-  {
-    id: "2",
-    nombre: "Banana",
-    precio: 2000,
-    img: "https://img.freepik.com/vector-gratis/racimo-platano-amarillo-maduro-vector-aislado-sobre-fondo-blanco_1284-45456.jpg",
-    description: "Lorem ipsum dolor. ",
-    category: "Fruta",
-    cantidad:0,
-  },
-  {
-    id: "3",
-    nombre: "Naranja",
-    precio: 80,
-    img: "https://imgs.globovision.com/Lyd_jKnB8qhC_YJOSxZJNgE1_ls=/600x0/smart/d5aaf1dbef774fedb10f2a1e95ffe53e",
-    description: "Lorem ipsum dolor. ",
-    category: "Fruta",
-    cantidad:0,
-  },
-  {
-    id: "4",
-    nombre: "Mandarina",
-    precio: 8033,
-    img: "https://cdn2.salud180.com/sites/default/files/styles/medium/public/field/image/2017/11/mandraina.jpg",
-    description: "Lorem ipsum dolor. ",
-    category: "Fruta",
-    cantidad:0,
-  },
-];
+// let productos = [
+//   {
+//     id: "1",
+//     nombre: "Manzana roja",
+//     precio: 15000,
+//     img: "https://t1.ev.ltmcdn.com/es/posts/7/0/2/germinar_semillas_de_manzana_como_hacerlo_y_cuidados_2207_orig.jpg",
+//     description: "Lorem ipsum dolor. ",
+//     category: "Fruta",
+//     cantidad:0,
+//   },
+//   {
+//     id: "2",
+//     nombre: "Banana",
+//     precio: 2000,
+//     img: "https://img.freepik.com/vector-gratis/racimo-platano-amarillo-maduro-vector-aislado-sobre-fondo-blanco_1284-45456.jpg",
+//     description: "Lorem ipsum dolor. ",
+//     category: "Fruta",
+//     cantidad:0,
+//   },
+//   {
+//     id: "3",
+//     nombre: "Naranja",
+//     precio: 80,
+//     img: "https://imgs.globovision.com/Lyd_jKnB8qhC_YJOSxZJNgE1_ls=/600x0/smart/d5aaf1dbef774fedb10f2a1e95ffe53e",
+//     description: "Lorem ipsum dolor. ",
+//     category: "Fruta",
+//     cantidad:0,
+//   },
+//   {
+//     id: "4",
+//     nombre: "Mandarina",
+//     precio: 8033,
+//     img: "https://cdn2.salud180.com/sites/default/files/styles/medium/public/field/image/2017/11/mandraina.jpg",
+//     description: "Lorem ipsum dolor. ",
+//     category: "Fruta",
+//     cantidad:0,
+//   },
+// ];
+
+let productos = fetch("./productos.json")
+  .then((res) => res.json())
+  .then((data) => {
+    productos = data;
+    desplegarProductos(productos);
+  });
 
 //FUNCION PARA LIMPIAR EL CONTENIDO DEL CONTAINER PARA RENDERIZAR LUEGO
 const limpiarContenido = () => {
